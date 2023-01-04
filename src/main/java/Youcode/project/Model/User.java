@@ -1,13 +1,9 @@
 package Youcode.project.Model;
 
 
-import Youcode.project.Dto.Message;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 @Data
@@ -30,9 +26,9 @@ public class User {
     private Etat etat;
     private String password;
     @Transient
-    private Message message;
+    private String message;
 
-    public User(String firstName, String lastName, String phone, String address, String email, String password, Message message) {
+    public User(String firstName, String lastName, String phone, String address, String email, String password, String message) {
         firstName = firstName;
         lastName = lastName;
         phone = phone;

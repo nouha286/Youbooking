@@ -1,7 +1,6 @@
 package Youcode.project.Model;
 
 
-import Youcode.project.Dto.Message;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ public class Admin extends User{
                  String address,
                  String email,
                  String password,
-                 Message message) {
+                 String message) {
         super(firstName, lastName, phone, address, email, password, message);
     }
 

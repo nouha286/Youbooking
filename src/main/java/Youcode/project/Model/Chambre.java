@@ -1,7 +1,5 @@
 package Youcode.project.Model;
 
-import Youcode.project.Dto.Message;
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,9 +19,9 @@ public class Chambre {
     private Double fraiParNuit;
     private Disponibilite disponibilite;
     @Transient
-    private Message message;
+    private String message;
 
-    public Chambre(String categorie, Etat etat, String description, Double fraiParNuit, Disponibilite disponibilite, Message message) {
+    public Chambre(String categorie, Etat etat, String description, Double fraiParNuit, Disponibilite disponibilite, String message) {
         this.categorie = categorie;
         this.etat = etat;
         this.description = description;

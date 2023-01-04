@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,5 +64,12 @@ private  final RoleRepository roleRepository;
         return userRepository.findAll();
     }
 
+    @Transactional
+    public void addRoleToUser(User user, String roleName)
+    {
 
+        Role role=roleRepository.findRoleByNameRole(roleName);
+        user.setRole(role);
+
+    }
 }

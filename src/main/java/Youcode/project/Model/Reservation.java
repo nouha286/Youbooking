@@ -1,7 +1,5 @@
 package Youcode.project.Model;
 
-import Youcode.project.Dto.Message;
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,9 +23,9 @@ public class Reservation {
     private Etat etat;
     private LocalDate createdAt;
     @Transient
-    private Message message;
+    private String message;
 
-    public Reservation(LocalDate dateDebut, LocalDate dateFin, Etat etat, LocalDate createdAt, Message message) {
+    public Reservation(LocalDate dateDebut, LocalDate dateFin, Etat etat, LocalDate createdAt, String message) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.etat = etat;

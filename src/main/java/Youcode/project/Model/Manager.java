@@ -1,7 +1,6 @@
 package Youcode.project.Model;
 
 
-import Youcode.project.Dto.Message;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,8 +12,8 @@ import java.util.List;
 public class Manager extends User{
     private String UUID;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Hotel> hotels;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Hotel hotel;
 
     public Manager(String firstName,
                    String lastName,
@@ -22,7 +21,7 @@ public class Manager extends User{
                    String address,
                    String email,
                    String password,
-                   Message message,
+                   String message,
                    String UUID) {
         super(firstName, lastName, phone, address, email, password, message);
         this.UUID = UUID;

@@ -1,7 +1,5 @@
 package Youcode.project.Model;
 
-import Youcode.project.Dto.Message;
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,13 +18,13 @@ public class Hotel {
     private String name;
     private String description;
     @Transient
-    private Message message;
+    private String message;
     @OneToMany
     private List<Chambre> chambres=new ArrayList<>();
-    @ManyToMany
-    private List<Manager> manager;
+    @OneToOne
+    private Manager manager;
 
-    public Hotel(Etat etat, String ville, String name, String description, Message message) {
+    public Hotel(Etat etat, String ville, String name, String description, String message) {
         this.etat = etat;
         this.ville = ville;
         this.name = name;
