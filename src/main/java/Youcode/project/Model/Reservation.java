@@ -14,14 +14,15 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Chambre chambre;
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private Etat etat;
     private LocalDate createdAt;
+    private Double FraisTotal;
     @Transient
     private String message;
 

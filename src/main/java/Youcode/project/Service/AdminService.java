@@ -98,4 +98,18 @@ public class AdminService {
         admin1.setMessage("not present");
         return admin1;
     }
+
+    public Admin restore(Long id)
+    {
+        Optional<Admin> admin=adminRepository.findById(id);
+        if (admin.isPresent())
+        {
+            admin.get().setEtat(Etat.Active);
+            admin.get().setMessage("deleted");
+            return admin.get();
+        }
+        Admin admin1=new Admin();
+        admin1.setMessage("not present");
+        return admin1;
+    }
 }

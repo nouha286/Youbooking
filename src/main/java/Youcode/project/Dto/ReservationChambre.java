@@ -6,8 +6,10 @@ import java.time.LocalDate;
 
 @Data
 public class ReservationChambre {
+    private Long id;
     private Long clientId;
     private Long chambreId;
-    private LocalDate dateDebut;
-    private LocalDate dateFin;
+    private String dateDebut;
+    private String dateFin;
+
 }

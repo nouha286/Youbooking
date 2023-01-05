@@ -18,6 +18,11 @@ public class ManagerService {
     @Autowired
     UserService userService;
 
+    public Optional<Manager>  findOneManager(Long id)
+    {
+        return managerRepository.findManagerById(id);
+    }
+
     public List<Manager>  getManagersActive()
     {
         return managerRepository.findManagersActive();
@@ -94,6 +99,19 @@ public class ManagerService {
         if (manager.isPresent())
         {
             manager.get().setEtat(Etat.Desactive);
+            manager.get().setMessage("deleted");
+            return manager.get();
+        }
+        Manager manager1=new Manager();
+        manager1.setMessage("not present");
+        return manager1;
+    }
+    public Manager restore(Long id)
+    {
+        Optional<Manager> manager=managerRepository.findById(id);
+        if (manager.isPresent())
+        {
+            manager.get().setEtat(Etat.Active);
             manager.get().setMessage("deleted");
             return manager.get();
         }

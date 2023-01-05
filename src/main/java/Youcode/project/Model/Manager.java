@@ -12,8 +12,7 @@ import java.util.List;
 public class Manager extends User{
     private String UUID;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Hotel hotel;
+
 
     public Manager(String firstName,
                    String lastName,

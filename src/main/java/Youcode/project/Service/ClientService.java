@@ -102,4 +102,18 @@ public class ClientService {
         client1.setMessage("not present");
         return client1;
     }
+
+    public Client restore(Long id)
+    {
+        Optional<Client> client=clientRepository.findById(id);
+        if (client.isPresent())
+        {
+            client.get().setEtat(Etat.Active);
+            client.get().setMessage("deleted");
+            return client.get();
+        }
+        Client client1=new Client();
+        client1.setMessage("not present");
+        return client1;
+    }
 }

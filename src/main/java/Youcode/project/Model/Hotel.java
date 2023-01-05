@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class Hotel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
     private Etat etat;
@@ -19,9 +19,9 @@ public class Hotel {
     private String description;
     @Transient
     private String message;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Chambre> chambres=new ArrayList<>();
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Manager manager;
 
     public Hotel(Etat etat, String ville, String name, String description, String message) {
@@ -32,6 +32,18 @@ public class Hotel {
         this.message = message;
     }
 
+    public Hotel(Long id, Etat etat, String ville, String name, String description, String message) {
+        this.id = id;
+        this.etat = etat;
+        this.ville = ville;
+        this.name = name;
+        this.description = description;
+        this.message = message;
+
+    }
+
     public Hotel() {
     }
+
+
 }

@@ -11,13 +11,14 @@ public class Chambre {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Hotel hotel;
     private String categorie;
     private Etat etat;
     private String description;
     private Double fraiParNuit;
     private Disponibilite disponibilite;
+
     @Transient
     private String message;
 

@@ -4,6 +4,7 @@ package Youcode.project.Model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
@@ -27,7 +28,7 @@ public class Client extends User {
 
     private String CNE;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Reservation> reservation;
 
 
