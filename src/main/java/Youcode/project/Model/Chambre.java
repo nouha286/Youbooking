@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Data
 public class Chambre {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)

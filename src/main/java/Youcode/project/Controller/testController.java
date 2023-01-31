@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 public class testController {
@@ -18,7 +19,7 @@ public class testController {
     ChambreService chambreService;
 
     @GetMapping("/test")
-    Reservation getReservation()
+    List<Reservation> getReservation()
     {
         return reservationService.getReservation(chambreService.getOneChambre(6L).get(), LocalDate.parse("2023-01-06"),LocalDate.parse("2023-01-10"));
     }

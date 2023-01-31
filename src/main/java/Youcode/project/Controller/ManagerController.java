@@ -39,15 +39,15 @@ public class ManagerController {
     }
 
     @PutMapping("/ActiverManager")
-    public void activerManager(@RequestBody Long id)
+    public Manager activerManager(@RequestBody Long id)
     {
-        managerService.restore(id);
+        return managerService.restore(id);
     }
 
     @PutMapping("/DesactiverManager")
-    public void desactiverManager(@RequestBody Long id)
+    public Manager desactiverManager(@RequestBody Long id)
     {
-        managerService.delete(id);
+      return   managerService.delete(id);
     }
 
 

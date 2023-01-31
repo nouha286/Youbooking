@@ -1,5 +1,6 @@
 package Youcode.project.Repository;
 
+import Youcode.project.Model.Etat;
 import Youcode.project.Model.Hotel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,11 +14,11 @@ import java.util.Optional;
 public interface HotelRepository extends JpaRepository<Hotel,Long> {
     public Optional<Hotel> findHotelById(Long id);
 
-    @Query(value = "SELECT * FROM Hotel WHERE etat =Active ", nativeQuery = true)
-    public List<Hotel> findHotels();
+   List<Hotel> findHotelsByEtat(Etat etat);
 
-    @Query(value = "SELECT * FROM Hotel WHERE etat =Desactive ", nativeQuery = true)
-    List<Hotel> findHotelsDeleted();
+    @Query(value = "SELECT DISTINCT ville FROM Hotel  WHERE etat ='Active' ", nativeQuery = true)
+    List<String> getAllVille();
 
+    List<Hotel> findHotelsByVille(String ville);
 
 }

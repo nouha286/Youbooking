@@ -25,12 +25,12 @@ public class ManagerService {
 
     public List<Manager>  getManagersActive()
     {
-        return managerRepository.findManagersActive();
+        return managerRepository.findManagersByEtat(Etat.Active);
     }
 
     public List<Manager> getManagersDesactive()
     {
-        return managerRepository.findManagersDesactive();
+        return managerRepository.findManagersByEtat(Etat.Desactive);
     }
 
     public Manager saveManager(Manager manager)

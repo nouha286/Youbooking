@@ -15,18 +15,19 @@ public class ChambreService {
     ChambreRepository chambreRepository;
     @Autowired
     HotelService hotelService;
+
     public Optional<Chambre>  getOneChambre(Long id)
     {
         return chambreRepository.findById(id);
     }
     public List<Chambre> getChambresActive()
     {
-        return chambreRepository.findChambresActive();
+        return chambreRepository.findChambresByEtat(Etat.Active);
     }
 
     public List<Chambre> getChambresDesactive()
     {
-        return chambreRepository.findChambresDesactive();
+        return chambreRepository.findChambresByEtat(Etat.Desactive);
     }
 
     public List<Chambre> getChambresDisponnible()
@@ -36,6 +37,13 @@ public class ChambreService {
     public List<Chambre> getChambresIndisponnible()
     {
         return chambreRepository.findChambreNonDisponnible();
+    }
+
+    public List<Chambre> getChambresByHotel(Long id)
+    {
+       Optional<Hotel>  hotel=hotelService.getHotelById(id);
+       if (hotel.isPresent())   return chambreRepository.findChambresByHotel(hotel.get());
+       else return null;
     }
 
     public Chambre saveChambre(ChambreOfHotel chambre)

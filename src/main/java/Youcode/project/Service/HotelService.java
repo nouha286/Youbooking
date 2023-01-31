@@ -27,12 +27,12 @@ public class HotelService {
 
     public List<Hotel> getHotelsActive()
     {
-        return hotelRepository.findHotels();
+        return hotelRepository.findHotelsByEtat(Etat.Active);
     }
 
     public List<Hotel> getHotelsDesactive()
     {
-        return hotelRepository.findHotelsDeleted();
+        return hotelRepository.findHotelsByEtat(Etat.Desactive);
     }
 
     public Hotel saveHotel(HotelWithManager hotel)
@@ -99,6 +99,7 @@ public class HotelService {
         {
             hotel.get().setEtat(Etat.Desactive);
             hotel.get().setMessage("deleted");
+            hotelRepository.save(hotel.get());
             return hotel.get();
         }
         Hotel hotel1=new Hotel();
@@ -113,6 +114,7 @@ public class HotelService {
         {
             hotel.get().setEtat(Etat.Active);
             hotel.get().setMessage("deleted");
+            hotelRepository.save(hotel.get());
             return hotel.get();
         }
         Hotel hotel1=new Hotel();
@@ -120,9 +122,13 @@ public class HotelService {
         return hotel1;
     }
 
-    public void addManagerToHotel()
-    {
+  public List<String> getAllVille()
+  {
+      return hotelRepository.getAllVille();
+  }
 
-    }
-
+  public List<Hotel> getHotelsByVille(String ville)
+  {
+      return hotelRepository.findHotelsByVille(ville);
+  }
 }

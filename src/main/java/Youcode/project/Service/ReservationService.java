@@ -1,10 +1,7 @@
 package Youcode.project.Service;
 
 import Youcode.project.Dto.ReservationChambre;
-import Youcode.project.Model.Chambre;
-import Youcode.project.Model.Disponibilite;
-import Youcode.project.Model.Etat;
-import Youcode.project.Model.Reservation;
+import Youcode.project.Model.*;
 import Youcode.project.Repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,15 +20,23 @@ public class ReservationService {
     ReservationRepository reservationRepository;
     @Autowired
     ChambreService chambreService;
+    @Autowired
+    ClientService clientService;
 
 
     public List<Reservation> getReservations()
     {
         return reservationRepository.findAll();
     }
-    public  Reservation getReservation(Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
+    public  List<Reservation> getReservation(Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
     {
       return   reservationRepository.findReservationByDateAndChambre(chambre,dateDebut,dateFin);
+    }
+
+    public List<Reservation> getReservationsByClient(Long id)
+    {
+        Client client=clientService.getClientById(id);
+       return reservationRepository.findReservationsByClient(client);
     }
 
     public Reservation addReservation(ReservationChambre reservation)
@@ -44,7 +49,7 @@ public class ReservationService {
                 LocalDate.parse( reservation.getDateDebut()).isAfter(LocalDate.now()) &&
                 LocalDate.parse( reservation.getDateFin()).isAfter(LocalDate.now()) &&
                 LocalDate.parse( reservation.getDateFin()).isAfter( LocalDate.parse(reservation.getDateDebut())) &&
-                reservationRepository.findReservationByDateAndChambre(chambre.get(), LocalDate.parse(reservation.getDateDebut()), LocalDate.parse(reservation.getDateFin()))==null &&
+                reservationRepository.findReservationByDateAndChambre(chambre.get(), LocalDate.parse(reservation.getDateDebut()), LocalDate.parse(reservation.getDateFin())).size()==0 &&
                 chambre.isPresent() )
         {
             Reservation reservationSaved=new Reservation( LocalDate.parse(reservation.getDateDebut()),

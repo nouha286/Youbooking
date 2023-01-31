@@ -21,6 +21,13 @@ public class ReservationController {
         return reservationService.getReservations();
     }
 
+    @GetMapping("/AllReservationsOfClient/{id}")
+    @ResponseBody
+    public List<Reservation> getReservationsByClient(@PathVariable("id") Long id)
+    {
+        return reservationService.getReservationsByClient(id);
+    }
+
     @PostMapping("/addReservation")
     public Reservation addReservation(@RequestBody ReservationChambre reservation)
     {

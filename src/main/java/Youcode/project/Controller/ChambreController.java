@@ -2,11 +2,13 @@ package Youcode.project.Controller;
 
 import Youcode.project.Dto.ChambreOfHotel;
 import Youcode.project.Model.Chambre;
+import Youcode.project.Model.Hotel;
 import Youcode.project.Service.ChambreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ChambreController {
@@ -20,6 +22,16 @@ public class ChambreController {
         return chambreService.getChambresActive();
     }
 
+    @GetMapping("/ChambresOfHotel/{id}")
+    public List<Chambre> getChambresOfHotel(@PathVariable("id") Long id)
+    {
+        return chambreService.getChambresByHotel(id);
+    }
+    @GetMapping("/Chambre/{id}")
+    public Optional<Chambre> getChambreById(@PathVariable("id") Long id)
+    {
+        return chambreService.getOneChambre(id);
+    }
     @GetMapping("/restoreChambre")
     @ResponseBody
     public List<Chambre> getChambresDeleted()
@@ -59,7 +71,7 @@ public class ChambreController {
         chambreService.delete(id);
     }
 
-    @PutMapping("/restoreChambre")
+    @PutMapping("/activerChambre")
     public void activerChambre(@RequestBody Long id)
     {
         chambreService.restore(id);

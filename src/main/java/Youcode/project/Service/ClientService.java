@@ -18,6 +18,10 @@ public class ClientService {
     @Autowired
     UserService userService;
 
+    public Client getClientById(Long id)
+    {
+       return clientRepository.findClientById(id);
+    }
     public List<Client> getClientsActive()
     {
         return clientRepository.findClientsActive();
